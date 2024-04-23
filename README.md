@@ -1,1 +1,1 @@
-# food-delivery-api
+# food-deliery-api

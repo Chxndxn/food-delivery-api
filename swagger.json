@@ -1,0 +1,93 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Food Delivery API",
+        "description": "The deployed API is responsible for dynamic pricing.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/food-delivery/price/fetchByDistance": {
+            "post": {
+                "summary": "",
+                "description": "Fetching the dynamic price of the item",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                  "zone": {
+                                    "type": "string",
+                                    "description": "Zone for delivery (e.g., central, suburban)"
+                                  },
+                                  "organization_id": {
+                                    "type": "string",
+                                    "description": "ID of the organization"
+                                  },
+                                  "total_distance": {
+                                    "type": "number",
+                                    "description": "Total distance for delivery in kilometers"
+                                  },
+                                  "item_type": {
+                                    "type": "string",
+                                    "description": "Type of item (e.g., perishable, non-perishable)"
+                                  }
+                                },
+                                "required": ["zone", "organization_id", "total_distance", "item_type"]
+                              }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                      "total_price": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                      "error": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                      "error":
+                                      {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
